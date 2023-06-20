@@ -12,26 +12,26 @@ class Curve {
 
         class EC_point {
             public:
-                int x, y;
+                double x, y;
                 
-                EC_point(int x0, int y0) {
+                EC_point(double x0, double y0) {
                     x = x0;
                     y = y0;
                 }
 
-                const int getX() {
+                const double getX() {
                     return x;
                 }
 
-                const int getY() {
+                const double getY() {
                     return y;
                 }
 
                 EC_point &operator+(const EC_point a) {
                     // point addition
-                    const int lambda = (a.x-x)/(a.y-y);
-                    const int newX = lambda*lambda-x-a.x;
-                    const int newY = lambda*(x-newX)-y;
+                    const double lambda = (a.x-x)/(a.y-y);
+                    const double newX = lambda*lambda-x-a.x;
+                    const double newY = lambda*(x-newX)-y;
                     EC_point result(newX, newY);
                     return result;
                 }
@@ -88,19 +88,27 @@ class Curve {
                 we denote 2P (the result) as (x_3, y_3)
                 */
                 EC_point doublePoint() {
-                    int lambda, x3, y3;
-                    lambda = (3 * (x * x) + 2 * a2 * x - a1 * y + a4) / (2 * y + a1 * x + a3);
-                    x3 = lambda * lambda + lambda * a1 - a2 - 2 * x;
-                    y3 = -1 * a1 * x3 - a3 - lambda * x3 + lambda * x - y;
+                    const double lambda = (3 * (x * x) + 2 * a2 * x - a1 * y + a4) / (2 * y + a1 * x + a3);
+                    const double x3 = lambda * lambda + lambda * a1 - a2 - 2 * x;
+                    const double y3 = -1 * a1 * x3 - a3 - lambda * x3 + lambda * x - y;
 
                     EC_point result(x3, y3);
                     return result;
                 }
 
-                
+                EC_point generatePoint(double x) {
+                    double y = sqrt(x*x*x + 6*x*x - 10*x + 15) + 5;
+                    return EC_point(x, y);
+                }
+
                 bool isValid() {
                     return (y*y + a1*x*y + a3*y) == (x*x*x + a2*x*x + a4*x + a6);
                 }
+
+                void print() {
+                    printf("(%.2f, %.2f)\n", x, y);
+                }
+
         };
 
         //y^{2}+ a_{1}xy + a_{3}y = x^{3} + a_{2}x^{2} + a_{4}x + a_{6}

@@ -1,6 +1,11 @@
+#pragma once
+
 class Curve {
     public:
         int a1, a2, a3, a4, a6;
+
+        Curve(int b1, int b2, int b3, int b4, int b6);
+        void print();
 
         class EC_point {
             public:
@@ -14,8 +19,8 @@ class Curve {
                 EC_point times(const unsigned n);
                 EC_point doublePoint();
                 bool isValid();
+                EC_point generatePoint(double x);
+                void print();
         };
-
-        void print();
 
 };
