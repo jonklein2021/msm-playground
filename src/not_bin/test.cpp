@@ -7,9 +7,6 @@ using namespace std;
 
 int main(void){
     std::cout << "RAHHHHH" << std::endl;
-
-    Curve bn_420(0, 6, -10, -10, -10);
-    bn_420.print();
     
     vector<Curve::EC_point> points;
     vector<unsigned> scalars;
