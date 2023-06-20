@@ -38,8 +38,23 @@ class Curve {
                     lambda = (a.x-x)/(a.y-y);
                     newX = lambda*lambda-x-a.x;
                     newY = lambda*(x-newX)-y;
-                    EC_point newPoint(newX, newY);
-                    return newPoint;
+                    EC_point result(newX, newY);
+                    return result;
+                }
+
+                EC_point &operator+=(const EC_point a) {
+                    // point addition and assignment
+                    EC_point result = *this + a;
+                    *this = result;
+                    return result;
+                }
+
+                EC_point &operator*(const unsigned n) {
+                    EC_point result = *this;
+                    for (size_t i = 0; i < n-1; i++) {
+                        result += result;
+                    }
+                    return result;
                 }
 
                 /*
@@ -47,11 +62,11 @@ class Curve {
                 lambda = (3x_1^2 + 2a_2x_1 - a_1y_1 + a_4) / (2y_1 + a_1x_1 + a_3)
                 we denote 2P (the result) as (x_3, y_3)
                 */
-                EC_point doublePoint(const EC_point a) {
+                EC_point doublePoint() {
                     int lambda, x3, y3;
-                    lambda = (3 * (a.x * a.x) + 2 * a2 * a.x - a1 * a.y + a4) / (2 * a.y + a1 * a.x + a3);
-                    x3 = lambda * lambda + lambda * a1 - a2 - 2 * a.x;
-                    y3 = -1 * a1 * x3 - a3 - lambda * x3 + lambda * a.x - a.y;
+                    lambda = (3 * (x * x) + 2 * a2 * x - a1 * y + a4) / (2 * y + a1 * x + a3);
+                    x3 = lambda * lambda + lambda * a1 - a2 - 2 * x;
+                    y3 = -1 * a1 * x3 - a3 - lambda * x3 + lambda * x - y;
 
                     EC_point newPoint(x3, y3);
                     return newPoint;
