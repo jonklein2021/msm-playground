@@ -1,6 +1,7 @@
 #include "curve.hpp"
 #include <assert.h>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 

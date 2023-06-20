@@ -23,11 +23,11 @@ int main(void){
         newPoint.print();
         points.push_back(newPoint);
     }
-
-    std::cout << "\n\nResult Point:\n" << std::endl;
     
+    //seg fault
     Curve::EC_point addSimplePoint = MSM::addMethod(points, scalars);
     
+    std::cout << "\n\nResult Point:\n" << std::endl;
     addSimplePoint.print();
 
     return 0;

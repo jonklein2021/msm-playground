@@ -35,13 +35,16 @@ Curve::EC_point &Curve::EC_point::operator+(const Curve::EC_point a) {
     const double newX = lambda*lambda-x-a.x;
     const double newY = lambda*(x-newX)-y;
     EC_point result(newX, newY);
+    std::cout << "hola from +\n";
     return result;
 }
 
 Curve::EC_point &Curve::EC_point::operator+=(const Curve::EC_point a) {
     // point addition and assignment
-    EC_point result = *this + a;
-    *this = result;
+    std::cout << "hola from +=\n";
+    EC_point result = EC_point(x, y) + a; // seggy fault :(
+    std::cout << "hola from +=\n";
+    x = result.getX(); y = result.getY();
     return result;
 }
 
@@ -57,6 +60,10 @@ Curve::EC_point &Curve::EC_point::operator*(const unsigned n) {
         result += result;
     }
     return result;
+}
+
+Curve::EC_point &Curve::EC_point::operator=(const Curve::EC_point point) {
+    x = point.getX(); y = point.getY();
 }
 
 /**

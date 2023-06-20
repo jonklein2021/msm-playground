@@ -19,6 +19,7 @@ class Curve {
 
                 EC_point &operator+(const EC_point a);
                 EC_point &operator+=(const EC_point a);
+                EC_point &operator=(const Curve::EC_point point);
                 EC_point &operator*(const unsigned n); // naive ssm
                 EC_point times(const unsigned n); // double-and-add ssm
                 EC_point doublePoint();
