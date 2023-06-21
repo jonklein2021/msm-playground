@@ -10,6 +10,7 @@ namespace MSM {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
         for (size_t i = 0; i < points.size(); i++) {
+            cout << "i=" << i << endl;
             resultPoint += points[i] * scalars[i];
         }
         return resultPoint;

@@ -13,7 +13,7 @@ int main(void){
 
     //y^{2}+ a_{1}xy + a_{3}y = x^{3} + a_{2}x^{2} + a_{4}x + a_{6}
 
-    for (size_t i = 1; i <= 16; i++) {
+    for (size_t x = 1; x <= 16; x++) {
         scalars.push_back(2);
     }
 
