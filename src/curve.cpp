@@ -31,16 +31,14 @@ void Curve::EC_point::print() {
 }
 
 // point addition
-Curve::EC_point &Curve::EC_point::operator+(Curve::EC_point a) {
+Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
     // std::cout << "hola from +\n";
     if (a.x == x && a.y == y)
         return doublePoint();
     const double lambda = (a.y-y)/(a.x-x);
     const double newX = lambda*lambda-x-a.x;
     const double newY = lambda*(x-newX)-y;
-    x = newX;
-    y = newY;
-    return *this;
+    return EC_point(newX, newY);
 }
 
 Curve::EC_point &Curve::EC_point::operator+=(Curve::EC_point a) {
@@ -56,12 +54,13 @@ Curve::EC_point &Curve::EC_point::operator+=(Curve::EC_point a) {
  * @param n the scalar to multiply by
  * @return EC_point
  */
-Curve::EC_point &Curve::EC_point::operator*(unsigned n) {
+Curve::EC_point Curve::EC_point::operator*(unsigned n) {
+    EC_point result(x, y);
     for (size_t i = 0; i < n-1; i++) {
         // std::cout <<  "hola from *\n";
-        *this += *this;
+        result += *this;
     }
-    return *this;
+    return result;
 }
 
 Curve::EC_point &Curve::EC_point::operator=(Curve::EC_point point) {
@@ -75,9 +74,10 @@ Curve::EC_point &Curve::EC_point::operator=(Curve::EC_point point) {
  * @param n the scalar to multiply by
  * @return EC_point
  */
-Curve::EC_point &Curve::EC_point::times(unsigned n) {
+Curve::EC_point Curve::EC_point::times(unsigned n) {
     if (n == 1) return *this;
 
+    EC_point result(x, y);
     unsigned remaining = n-1;
     while (remaining > 0) {
         unsigned k = 1;
@@ -87,10 +87,10 @@ Curve::EC_point &Curve::EC_point::times(unsigned n) {
             partial.doublePoint();
         }
         remaining -= k;
-        *this += partial;
+        result += partial;
     }
     
-    return *this;
+    return result;
 }
 
 /*
@@ -98,13 +98,12 @@ point doubling i.e. P + P = 2P requires:
 lambda = (3x_1^2 + 2a_2x_1 - a_1y_1 + a_4) / (2y_1 + a_1x_1 + a_3)
 we denote 2P (the result) as (x_3, y_3)
 */
-Curve::EC_point &Curve::EC_point::doublePoint() {
+Curve::EC_point Curve::EC_point::doublePoint() {
     // std::cout << "hola from doublePoint()\n";
-    const double lambda = (3 * (x * x) + 2 * a2 * x - a1 * y + a4) / (2 * y + a1 * x + a3);
-    const double x3 = lambda * lambda + lambda * a1 - a2 - 2 * x;
-    const double y3 = -1 * a1 * x3 - a3 - lambda * x3 + lambda * x - y;
-    x = x3; y = y3;
-    return *this;
+    const double lambda = (3*x*x + 2*a2*x - a1*y + a4)/(2*y + a1*x + a3);
+    const double x3 = lambda*lambda + lambda*a1 - a2 - 2*x;
+    const double y3 = -1*a1*x3-a3 - lambda*x3 + lambda*x-y;
+    return EC_point(x3, y3);
 }
 
 Curve::EC_point Curve::EC_point::generatePoint(double x) {

@@ -17,12 +17,12 @@ class Curve {
                 bool isValid();
                 void print();
 
-                EC_point &operator+(EC_point a);
+                EC_point operator+(EC_point a);
                 EC_point &operator+=(EC_point a);
                 EC_point &operator=(Curve::EC_point point);
-                EC_point &operator*(unsigned n); // naive ssm
-                EC_point &times(unsigned n); // double-and-add ssm
-                EC_point &doublePoint();
+                EC_point operator*(unsigned n); // naive ssm
+                EC_point times(unsigned n); // double-and-add ssm
+                EC_point doublePoint();
                 EC_point generatePoint(double x);
         };
 };

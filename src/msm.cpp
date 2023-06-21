@@ -10,7 +10,7 @@ namespace MSM {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
         for (size_t i = 0; i < points.size(); i++) {
-            // cout << "i=" << i << endl;
+            (points[i] * scalars[i]).print();
             resultPoint += points[i] * scalars[i];
         }
         return resultPoint;
@@ -20,6 +20,7 @@ namespace MSM {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
         for (size_t i = 0; i < points.size(); i++) {
+            points[i].times(scalars[i]).print();
             resultPoint += points[i].times(scalars[i]);
         }
         return resultPoint;
@@ -40,7 +41,14 @@ namespace MSM {
          a total of 16 * 4 = 64 buckets across all windows. 
         */
 
+        vector<uint8_t> decomposedScalars;
 
-
+        for (int i = 0; i < scalars.size(); i++) {
+            //Need to decompose each scalar into its corresponding 4 windows.
+            for (int j = 0; j < 4; j++) {
+                uint8_t decomposedPart = scalars[i] << 8 * j;
+                decomposedScalars.push_back(decomposedPart);
+            }
+        }
     }
 };
