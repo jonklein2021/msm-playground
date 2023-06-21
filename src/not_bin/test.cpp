@@ -20,15 +20,19 @@ int main(void){
     for (size_t x = 1; x <= 16; x++) {
         double y = sqrt(x * x * x + 6 * x * x - 10 * x + 15) + 5; //algebra works out to this, because a = 0
         Curve::EC_point newPoint(x, y);
-        newPoint.print();
+        // newPoint.print();
         points.push_back(newPoint);
     }
     
-    //seg fault
+    // no more seg fault :)
     Curve::EC_point addSimplePoint = MSM::addMethod(points, scalars);
-    
-    std::cout << "\n\nResult Point:\n" << std::endl;
+    std::cout << "Result Point: ";
     addSimplePoint.print();
+
+    
+    Curve::EC_point doubleAddPoint = MSM::doubleAddMethod(points, scalars);
+    std::cout << "Result Point: ";
+    doubleAddPoint.print();
 
     return 0;
 }

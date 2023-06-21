@@ -78,20 +78,19 @@ Curve::EC_point &Curve::EC_point::operator=(Curve::EC_point point) {
 Curve::EC_point &Curve::EC_point::times(unsigned n) {
     if (n == 1) return *this;
 
-    EC_point result(0.0, 0.0);
-    unsigned remaining = n;
+    unsigned remaining = n-1;
     while (remaining > 0) {
-        unsigned x = 1;
+        unsigned k = 1;
         EC_point partial(x, y);
-        while ((x << 1) <= remaining) {
-            x <<= 1;
+        while ((k << 1) <= remaining) {
+            k <<= 1;
             partial.doublePoint();
         }
-        remaining -= x;
-        result += partial;
+        remaining -= k;
+        *this += partial;
     }
     
-    return result;
+    return *this;
 }
 
 /*
