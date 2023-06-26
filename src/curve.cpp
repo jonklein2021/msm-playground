@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <float.h>
 #include <cmath>
+#include <format>
 
 int Curve::a1 = 0;
 int Curve::a2 = 6;
@@ -34,6 +35,10 @@ bool Curve::EC_point::isValid() {
 }
 
 void Curve::EC_point::print() {
+    printf("(%.2f, %.2f)", x, y);
+}
+
+void Curve::EC_point::println() {
     printf("(%.2f, %.2f)\n", x, y);
 }
 
@@ -54,7 +59,6 @@ Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
     }
 
     if (this->isInfinity && !a.isInfinity) { // O+P
-        this->isInfinity = false;
         return a;
     }
 
@@ -69,12 +73,17 @@ Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
     return EC_point(newX, newY);
 }
 
-Curve::EC_point &Curve::EC_point::operator+=(Curve::EC_point a) {
+Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
     // point addition and assignment
     // std::cout << "hola from +=\n";
 
-    if (this->isInfinity && !a.isInfinity) // O+P
+    // printf("%d, %d\n", this->isInfinity, a.isInfinity);
+
+    if (this->isInfinity && !a.isInfinity) { // O+P
         this->isInfinity = false;
+        *this = a;
+        return a;
+    }
 
     *this = *this + a;
     return *this;
@@ -87,15 +96,18 @@ Curve::EC_point &Curve::EC_point::operator+=(Curve::EC_point a) {
  * @return EC_point
  */
 Curve::EC_point Curve::EC_point::operator*(unsigned n) {
-    EC_point result(x, y);
-    for (size_t i = 0; i < n-1; i++) {
+    EC_point result{};
+    for (size_t i = 0; i < n; i++) {
         // std::cout <<  "hola from *\n";
         result += *this;
+        // std::cout << "result in for loop: ";
+        // result.print();
+        
     }
     return result;
 }
 
-Curve::EC_point &Curve::EC_point::operator=(Curve::EC_point point) {
+Curve::EC_point Curve::EC_point::operator=(Curve::EC_point point) {
     // std::cout <<  "hola from =\n";
     x = point.getX();
     y = point.getY();
@@ -108,54 +120,31 @@ Curve::EC_point &Curve::EC_point::operator=(Curve::EC_point point) {
  * @param n the scalar to multiply by
  * @return EC_point
  */
-// Curve::EC_point Curve::EC_point::times(unsigned n) {
-//     std::cout << "====================\n";
-//     std::cout << "n=" << n << "\n";
-//     if (n == 1) return *this;
-//     if (n == 2) return doublePoint();
-
-//     EC_point result(x, y);
-//     unsigned remaining = n-1;
-//     while (remaining > 0) {
-//         unsigned k = 1;
-//         EC_point partial(x, y);
-//         while ((k << 1) <= remaining) {
-//             k <<= 1;
-//             partial = partial.doublePoint();
-//         }
-//         remaining -= k;
-//         result += partial;
-//         std::cout << k << " ";
-//     }
-
-//     std::cout << std::endl;
-    
-//     return result;
-// }
 Curve::EC_point Curve::EC_point::times(unsigned n) {
-    std::cout << "====================\n";
-    std::cout << "n=" << n << "\n";
+    // std::cout << "====================\n";
+    // std::cout << "n=" << n << "\n";
     if (n == 1) return *this;
     if (n == 2) return doublePoint();
 
     EC_point result{};
     EC_point temp(x, y);
     
-    std::cout << "initial = "; temp.print();
+    // std::cout << "initial = "; temp.print();
 
     while (n > 0) {
         unsigned long long b = n & 1;
         // printf("%llx", b);
         if (b == 1) {
             result += temp;
-            std::cout << "temp = "; temp.print();
-            std::cout << "result = "; result.print();
+            // std::cout << "temp = "; temp.print();
+            // std::cout << "result = "; result.print();
         }
         temp = temp.doublePoint();
+        // std::cout << "temp doubled = "; temp.print();
         n >>= 1;
     }
 
-    result.print();
+    // result.print();
     
     return result;
 }
@@ -181,4 +170,3 @@ Curve::EC_point Curve::EC_point::generatePoint(double x) {
 void Curve::print() {
     printf("y^2 + %dxy + %dy = x^3 + %dx^2 + %dx + %d\n", a1, a3, a2, a4, a6);
 }
-

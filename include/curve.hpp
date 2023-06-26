@@ -16,12 +16,13 @@ class Curve {
                 const double getY();
                 bool isValid();
                 void print();
+                void println();
 
                 bool operator==(EC_point a);
                 bool operator!=(EC_point a);
                 EC_point operator+(EC_point a);
-                EC_point &operator+=(EC_point a);
-                EC_point &operator=(Curve::EC_point point);
+                EC_point operator+=(EC_point a);
+                EC_point operator=(Curve::EC_point point);
                 EC_point operator*(unsigned n); // naive ssm
                 EC_point times(unsigned n); // double-and-add ssm
                 EC_point doublePoint();

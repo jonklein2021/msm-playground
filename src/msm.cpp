@@ -31,9 +31,11 @@ namespace MSM {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0, 0);
 
-        int c_size = 4;
-        int scalar_size = 32;
-        int windows = scalar_size / c_size;
+        const unsigned n = scalars.size();
+        const unsigned c_size = 4;
+        const unsigned scalar_size = 32;
+        const unsigned windows = scalar_size / c_size;
+        const unsigned mask = (1 << c_size) - 1; // 00...011...11 with windows bits; 0xF for c_size = 4
 
 
         /*
@@ -44,16 +46,21 @@ namespace MSM {
         will have an index 0...15 in window K1, 16...31 in window K2, etc. 
         */
 
-        vector<uint8_t> decomposedScalars;
+        vector<uint8_t> decomposedScalars; // matrix of a_ij scalars; ith row -> ith original scalar, jth column -> jth decomposition
   
-        for (int i = 0; i < scalars.size(); i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < c_size; j++) {
-                uint8_t decomposedPart = (scalars[i] >> c_size*j) & 0xF;
-                decomposedScalars.push_back(decomposedPart);
+                uint8_t a_ij = (scalars[i] >> c_size*j) & mask;
+                decomposedScalars.push_back(a_ij); // push each a_ij scalar component
             }
         }
 
+        // compute each T_i = a_i*G_j
         
+        struct calebStruct {
+            int scalar;
+            char* pointer;
+        };
 
     }
 };
