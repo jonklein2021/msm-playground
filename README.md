@@ -1,5 +1,10 @@
 # msm-playground
 
+## Build Instructions
+```
+./test.sh
+```
+
 when caleb parallelize the msm
 ```
 ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠛⠋⠉⠈⠉⠉⠉⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿

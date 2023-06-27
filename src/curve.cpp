@@ -89,7 +89,7 @@ Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
 }
 
 /**
- * @brief naive single-scalar multipliation
+ * @brief naive single-scalar multipliation (for some reason doesnt work???)
  * 
  * @param n the scalar to multiply by
  * @return EC_point

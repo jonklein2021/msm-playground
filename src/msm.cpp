@@ -7,11 +7,11 @@
 using namespace std;
 
 namespace MSM {
+    // doesnt work because naive multiplication doesnt work??
     Curve::EC_point addMethod(vector<Curve::EC_point> points, vector<unsigned> scalars) {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
         for (size_t i = 0; i < points.size(); i++) {
-            // (points[i] * scalars[i]).print();
             resultPoint += points[i] * scalars[i];
         }
         return resultPoint;
@@ -28,7 +28,7 @@ namespace MSM {
     }
 
     /**
-     * @brief "naive" pippenger algorithm, simplest implementation (not bucket method)
+     * @brief "naive" pippenger algorithm, simplest implementation (bucket method)
      *      WE BUCKET METHOD IN THIS BITCH TAKE YO ASS BACK TO NAIVE IMPLEMENTATION
      * 
      * @param points 
