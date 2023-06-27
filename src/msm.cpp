@@ -106,29 +106,80 @@ namespace MSM {
         for (int i = 0; i < sizeDecompScalars; i++) {
             unsigned currentDecomp = scalarComps[i];
             vector<Curve::EC_point> currVec = totalBuckets[currentDecomp];
-            int pointsIndex = i / k;
+            int pointsIndex = i/k;
 
             currVec.push_back(points[pointsIndex]);
 
             totalBuckets.insert(totalBuckets.begin(), currentDecomp, currVec);
         }
+        
+        vector<vector<Curve::EC_point>> jonsBuckets; // jon
+        vector<Curve::EC_point> jawns;
+
+        for (size_t j = 0; j < k; j++) { // iterate over windows
+            // accumulate points into buckets
+            for (size_t i = 0; i < n; i++) { // iterate over scalars
+                // assign reference to correct bucket
+                vector<Curve::EC_point> bucket = jonsBuckets[scalarComps[i*n+j]];
+                // add point to correct bucket (ith scalar corresponds to ith point)
+                bucket.push_back(points[i]);
+            } //<---- when this loop is done, the scalars associated with the jth window have been placed
+            
+            // aggregate points in each bucket via naive addition
+            for (size_t b = 0; b < ((1 << c) - 1); b++) { // for each bucket, store sum of points in first index
+                vector<Curve::EC_point> currentBucket = jonsBuckets[b];
+                size_t bucketSize = currentBucket.size();
+                for (size_t l = 1; l < bucketSize; l++) {
+                    currentBucket[0] += currentBucket[l];
+                }
+            }
+
+            // aggregate buckets for this window via triangle sum and store result
+            Curve::EC_point bucketAgg, prev;
+            bucketAgg = prev = jonsBuckets[0][0];
+            for (size_t b = 1; b < ((1 << c) - 1); b++) {
+                prev += jonsBuckets[b][0];
+                bucketAgg += prev;
+            }
+            jawns.push_back(bucketAgg);
+
+            // clear set of buckets for next window
+            for (size_t b = 0; b < ((1 << c) - 1); b++) {
+                jonsBuckets[b].clear();
+            }
+        }
+        
 
         /*
         Now that the buckets have been filled, we can perform a triangle sum:
-        S_k +
-        S_k + S_k-1 +
-        ...
-        S_k + S_k-1 + ... + S_2
-        S_k + S_k-1 + ... + S_2 + S_1
+          S_k +
+          S_k + S_k-1 +
+          ...
+          S_k + S_k-1 + ... + S_2
+          S_k + S_k-1 + ... + S_2 + S_1
         = S_1 + S_2 + ... + (k-1)*(S_k-1) + k*S_k
         */
 
-        Curve::EC_point result = partialSums[0];
-        // for (size_t j = 1; j < k; j++) {
-        //     result = result.times(1 << c);
-        //     result += partialSums[j];
-        // }
+        /*
+        Algo:
+        for each i in totalBuckets:
+            Curve::EC_point tempPoint;
+            for each currElement.size() j to 0: 
+                tempPoint += currElement[j];
+            currElement[0] = tempPoint;
+
+        After algo completes we have each first element in totalBuckets[i][0] = S_1, S_2, ... S_k
+        */
+
+        int sizeJon = jonsBuckets.size();
+
+        Curve::EC_point finalGigaChadPoint{};
+
+        for (int i = 0; i < sizeJon; i++) {
+            vector<Curve::EC_point> tempVec = jonsBuckets[i];
+            finalGigaChadPoint += tempVec[0];
+        }
         
-        return result;
+        return finalGigaChadPoint;
     }
 };

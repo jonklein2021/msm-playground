@@ -120,30 +120,21 @@ Curve::EC_point Curve::EC_point::operator=(Curve::EC_point point) {
  * @return EC_point
  */
 Curve::EC_point Curve::EC_point::times(unsigned n) {
-    // std::cout << "====================\n";
-    // std::cout << "n=" << n << "\n";
+    if (n == 0) return EC_point(); // 0*P = O
     if (n == 1) return *this;
     if (n == 2) return doublePoint();
 
     EC_point result{};
     EC_point temp(x, y);
-    
-    // std::cout << "initial = "; temp.print();
 
     while (n > 0) {
         unsigned long long b = n & 1;
-        // printf("%llx", b);
         if (b == 1) {
             result += temp;
-            // std::cout << "temp = "; temp.print();
-            // std::cout << "result = "; result.print();
         }
         temp = temp.doublePoint();
-        // std::cout << "temp doubled = "; temp.print();
         n >>= 1;
     }
-
-    // result.print();
     
     return result;
 }
