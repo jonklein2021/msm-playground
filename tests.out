@@ -1,12 +1,20 @@
 RAHHHHH
 Running 256 tests...
 0
-(4.54, -8.66)
+(-9.46, 1.71)
 	before pippenger
 
 
-
-
-hola from pippenger
-
-
+Pippenger: Initiializing...
+Pippenger: Decomposing scalars...
+0x6b8b4567 0x327b23c6 0x643c9869 0x66334873 0x74b0dc51 0x19495cff 0x2ae8944a 0x625558ec 0x238e1f29 0x46e87ccd 0x3d1b58ba 0x507ed7ab 0x2eb141f2 0x41b71efb 0x79e2a9e3 0xffffffff 
+j=0 7 6 9 3 1 f a c 9 d a b 2 b 3 f 
+j=1 6 c 6 7 5 f 4 e 2 c b a f f e f 
+j=2 5 3 8 8 c c 4 8 f c 8 7 1 e 9 f 
+j=3 4 2 9 4 d 5 9 5 1 7 5 d 4 1 a f 
+j=4 b b c 3 0 9 8 5 e 8 b e 1 7 2 f 
+j=5 8 7 3 3 b 4 e 5 8 e 1 7 b b e f 
+j=6 b 2 4 6 4 9 a 2 3 6 d 0 e 1 9 f 
+j=7 6 3 6 6 7 1 2 6 2 4 3 5 2 4 7 f 
+0
+Pippenger: Accumulating buckets...

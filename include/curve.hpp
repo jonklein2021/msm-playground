@@ -10,7 +10,7 @@ class Curve {
                 double x, y;
                 bool isInfinity;
 
-                EC_point(); // if point at infinity
+                EC_point(); // for points at infinity
                 EC_point(double x0, double y0);
                 const double getX();
                 const double getY();

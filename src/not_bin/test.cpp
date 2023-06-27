@@ -11,21 +11,21 @@
 using namespace std;
 
 int main(int argc, char** argv){
-    cout << "RAHHHHH" << endl;
+    std::cout << "RAHHHHH" << endl;
 
     if ((argc > 1) && (strcmp(argv[1], "test") == 0)) {
         // run tests
-        cout << "Running " << NUM_TESTS << " tests...\n";
+        std::cout << "Running " << NUM_TESTS << " tests...\n";
 
         vector<Curve::EC_point> points;
         vector<unsigned> scalars;
 
         for (size_t t = 0; t < NUM_TESTS; t++) {
-            cout << t << endl;
+            std::cout << t << endl;
             // generate scalars
-            for (size_t k = 0; k < N; k++){
-                scalars.push_back(rand() % 1000);
-            }
+            for (size_t k = 0; k < N-1; k++){
+                scalars.push_back(rand() % 0xFFFFFFFF);
+            } scalars.push_back(UINT32_MAX);
             // generate(scalars.begin(), scalars.begin()+N, []() { return rand() % 1000; });
 
             // generate points
@@ -40,23 +40,23 @@ int main(int argc, char** argv){
             //     cout << scalars[i] << " "; points[i].println();
             // }
 
-            // ================== DOUBLE-AND-ADD ==================
+            // ================== DOUBLE-AND-ADD ===================
             Curve::EC_point doubleAddPoint = MSM::doubleAddMethod(points, scalars);
             doubleAddPoint.print();
 
-            cout << "\t";
+            std::cout << "\t";
             
             // ==================== PIPPENGER ====================
-            cout << "before pippenger\n\n" << endl;
+            std::cout << "before pippenger\n\n" << endl;
             Curve::EC_point pippengerPoint = MSM::pippengerMethod(points, scalars);
-            cout << "after pippenger" << endl;
+            std::cout << "after pippenger" << endl;
             pippengerPoint.println();
 
             // reset for next iteration
             points.clear();
             scalars.clear();
         } 
-        exit(0);
+        std::exit(0);
     }
 
     Curve::EC_point p(0.0, 0.0);
@@ -68,12 +68,12 @@ int main(int argc, char** argv){
     // cout << "p*2 = "; (p*2).print();
     // cout << "p*3 = "; (p*3).print();
     // cout << "p*4 = "; (p*4).print();
-    cout << "(p*2)+(p*2) = "; ((p*2)+(p*2)).print();
-    cout << "(p*3)+(p*4) = "; ((p*3)+(p*4)).print();
-    cout << "(p*4)+(p*4) = "; ((p*4)+(p*4)).print();
-    cout << "(p*4)+(p*2) = "; ((p*4)+(p*2)).print();
-    cout << "p.times(6) = "; p.times(5).print();   
-    cout << "p*6 = "; (p*6).print();   
+    std::cout << "(p*2)+(p*2) = "; ((p*2)+(p*2)).print();
+    std::cout << "(p*3)+(p*4) = "; ((p*3)+(p*4)).print();
+    std::cout << "(p*4)+(p*4) = "; ((p*4)+(p*4)).print();
+    std::cout << "(p*4)+(p*2) = "; ((p*4)+(p*2)).print();
+    std::cout << "p.times(6) = "; p.times(5).print();   
+    std::cout << "p*6 = "; (p*6).print();   
     // cout << "p*7 = "; (p*7).print();
     // cout << "p.times(7) = "; p.times(7).print();
     // cout << "p*8 = "; (p*8).print();

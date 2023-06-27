@@ -18,5 +18,6 @@ libmsm:
 	ar rs libmsm.a msm.o
 	mv *.o build/objects
 	mv *.a build/lib
+	
 clean:
 	rm -rf build
