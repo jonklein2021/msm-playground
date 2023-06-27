@@ -3,7 +3,6 @@
 #include <assert.h>
 #include <float.h>
 #include <cmath>
-#include <format>
 
 int Curve::a1 = 0;
 int Curve::a2 = 6;
@@ -35,7 +34,7 @@ bool Curve::EC_point::isValid() {
 }
 
 void Curve::EC_point::print() {
-    printf("(%.2f, %.2f)", x, y);
+    printf("(%.2f, %.2f)\n", x, y);
 }
 
 void Curve::EC_point::println() {

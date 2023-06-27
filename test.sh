@@ -6,6 +6,5 @@ make
 passed=0
 rc=$?
 if [[ $rc == 0 ]]; then
-    ./build/not_bin/test test
-    
+    ./build/not_bin/test test | tee -a tests.out
 fi

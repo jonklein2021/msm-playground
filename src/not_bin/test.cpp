@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include "msm.hpp"
@@ -5,6 +6,7 @@
 #include <string.h>
 
 #define NUM_TESTS 256
+#define N 16
 
 using namespace std;
 
@@ -14,35 +16,45 @@ int main(int argc, char** argv){
     if ((argc > 1) && (strcmp(argv[1], "test") == 0)) {
         // run tests
         cout << "Running " << NUM_TESTS << " tests...\n";
-        for (size_t t = 0; t < NUM_TESTS; t++) {
-            vector<Curve::EC_point> points;
-            vector<unsigned> scalars;
 
-            // generate a_i
-            for (size_t k = 1; k <= 16; k++) {
+        vector<Curve::EC_point> points;
+        vector<unsigned> scalars;
+
+        for (size_t t = 0; t < NUM_TESTS; t++) {
+            cout << t << endl;
+            // generate scalars
+            for (size_t k = 0; k < N; k++){
                 scalars.push_back(rand() % 1000);
             }
+            // generate(scalars.begin(), scalars.begin()+N, []() { return rand() % 1000; });
 
-            // generate p_i
-            for (size_t k = 1; k <= 16; k++) {
+            // generate points
+            for (size_t k = 0; k < N; k++) {
                 double x = (rand() % 10000)/100.00;
-                double y = sqrt(x * x * x + 6 * x * x - 10 * x + 15) + 5; //algebra works out to this, because a = 0
+                double y = sqrt(x*x*x + 6*x*x - 10*x + 15) + 5; //algebra works out to this, because a = 0
                 Curve::EC_point newPoint(x, y);
-                // newPoint.print();
                 points.push_back(newPoint);
             }
+            
+            // for (size_t i = 0; i < N; i++){
+            //     cout << scalars[i] << " "; points[i].println();
+            // }
 
-            // ==================== DOUBLE-AND-ADD ====================
+            // ================== DOUBLE-AND-ADD ==================
             Curve::EC_point doubleAddPoint = MSM::doubleAddMethod(points, scalars);
             doubleAddPoint.print();
 
             cout << "\t";
             
             // ==================== PIPPENGER ====================
+            cout << "before pippenger\n\n" << endl;
             Curve::EC_point pippengerPoint = MSM::pippengerMethod(points, scalars);
+            cout << "after pippenger" << endl;
             pippengerPoint.println();
 
-
+            // reset for next iteration
+            points.clear();
+            scalars.clear();
         } 
         exit(0);
     }
