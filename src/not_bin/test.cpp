@@ -5,7 +5,7 @@
 #include <cmath>
 #include <string.h>
 
-#define NUM_TESTS 256
+#define NUM_TESTS 1
 #define N 16
 
 using namespace std;
@@ -21,7 +21,6 @@ int main(int argc, char** argv){
         vector<unsigned> scalars;
 
         for (size_t t = 0; t < NUM_TESTS; t++) {
-            std::cout << t << endl;
             // generate scalars
             for (size_t k = 0; k < N-1; k++){
                 scalars.push_back(rand() % 0xFFFFFFFF);
@@ -39,6 +38,8 @@ int main(int argc, char** argv){
             //     cout << scalars[i] << " "; points[i].println();
             // }
 
+            cout.flush();
+
             // ================== DOUBLE-AND-ADD ===================
             Curve::EC_point doubleAddPoint = MSM::doubleAddMethod(points, scalars);
             doubleAddPoint.print();
@@ -46,9 +47,7 @@ int main(int argc, char** argv){
             std::cout << "\t";
             
             // ==================== PIPPENGER ====================
-            std::cout << "before pippenger\n\n" << endl;
             Curve::EC_point pippengerPoint = MSM::pippengerMethod(points, scalars);
-            std::cout << "after pippenger" << endl;
             pippengerPoint.println();
 
             // reset for next iteration

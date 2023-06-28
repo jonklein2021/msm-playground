@@ -115,25 +115,25 @@ namespace MSM {
             cout << "Pippenger: Aggregating points in each bucket..." << endl;
             // aggregate points in each bucket via naive addition
             for (size_t b = 0; b < mask; b++) { // for each bucket, store sum of points in first index
-                vector<Curve::EC_point> currentBucket = jonsBuckets[b];
-                size_t bucketSize = currentBucket.size();
+                size_t bucketSize = jonsBuckets[b].size();
                 for (size_t l = 1; l < bucketSize; l++) {
-                    currentBucket[0] += currentBucket[l];
+                    jonsBuckets[b][0] += jonsBuckets[b][l];
                 }
             }
 
             cout << "Triangle sum initializing..." << endl;
             // aggregate buckets for this window via triangle sum and store result
-            Curve::EC_point bucketAgg, prev;
-            bucketAgg = prev = jonsBuckets[0][0];
-            for (size_t b = mask-1; b >= 0; b--) {
-                fflush(stdout);
-                cout << "b=" << b << " ";
-                printf("%x\n", jonsBuckets[b][0]);
-                prev += jonsBuckets[b][0];
-                bucketAgg += prev;
-                cout << "hola from end" << endl;
-            } 
+            Curve::EC_point bucketAgg = jonsBuckets[mask-1][0], prev = jonsBuckets[mask-1][0];
+            for (int s = mask-2; s >= 0; s--) {
+                fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                cout << "s=" << s << endl;fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                jonsBuckets[s][0].println();fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                prev += jonsBuckets[b][0];fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                bucketAgg += prev;fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                cout << "hola from end" << endl;fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+            }
 
             cout << "Pushing back jawns..." << endl;
             jawns.push_back(bucketAgg);
