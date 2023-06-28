@@ -123,16 +123,18 @@ namespace MSM {
 
             cout << "Triangle sum initializing..." << endl;
             // aggregate buckets for this window via triangle sum and store result
-            Curve::EC_point bucketAgg = jonsBuckets[mask-1][0], prev = jonsBuckets[mask-1][0];
+            Curve::EC_point bucketAgg = jonsBuckets[mask-1][0];
+            Curve::EC_point prev = jonsBuckets[mask-1][0];
+            cout << mask-1 << endl;
+            bucketAgg.println();
+            prev.println();
             for (int s = mask-2; s >= 0; s--) {
-                fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                cout << "s=" << s << endl;fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                jonsBuckets[s][0].println();fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                prev += jonsBuckets[b][0];fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                bucketAgg += prev;fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
-                cout << "hola from end" << endl;fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);fflush(stdout);
+                cout << "s=" << s << endl;
+                Curve::EC_point current = jonsBuckets[s][0];
+                current.println();
+                prev += current;
+                bucketAgg += prev;
+                cout << "hola from end" << endl;
             }
 
             cout << "Pushing back jawns..." << endl;
