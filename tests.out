@@ -1,20 +1,73 @@
-RAHHHHH
-Running 256 tests...
+Running 1 tests...
 0
-(-9.46, 1.71)
-	before pippenger
+double and add MSM is: (115016768.32, 913753036174.04)
+	points are: 
+(25.03, 143.58)
+(23.27, 130.03)
+(17.29, 87.49)
+(88.40, 863.39)
+(26.12, 152.20)
+(43.03, 305.61)
+(31.69, 198.77)
+(77.09, 707.17)
+(71.57, 634.79)
+(95.60, 968.13)
+(9.33, 40.44)
+(30.99, 192.70)
+(2.78, 12.42)
+(18.16, 93.32)
+(53.35, 415.37)
+(90.97, 900.31)
+scalars are: 
+16807
+282475249
+1622650073
+984943658
+1144108930
+470211272
+101027544
+1457850878
+1458777923
+2007237709
+823564440
+1115438165
+1784484492
+74243042
+114807987
+4294967295
+before pippenger
 
 
 Pippenger: Initiializing...
+mask is: 15
+k is : 8
 Pippenger: Decomposing scalars...
-0x6b8b4567 0x327b23c6 0x643c9869 0x66334873 0x74b0dc51 0x19495cff 0x2ae8944a 0x625558ec 0x238e1f29 0x46e87ccd 0x3d1b58ba 0x507ed7ab 0x2eb141f2 0x41b71efb 0x79e2a9e3 0xffffffff 
-j=0 7 6 9 3 1 f a c 9 d a b 2 b 3 f 
-j=1 6 c 6 7 5 f 4 e 2 c b a f f e f 
-j=2 5 3 8 8 c c 4 8 f c 8 7 1 e 9 f 
-j=3 4 2 9 4 d 5 9 5 1 7 5 d 4 1 a f 
-j=4 b b c 3 0 9 8 5 e 8 b e 1 7 2 f 
-j=5 8 7 3 3 b 4 e 5 8 e 1 7 b b e f 
-j=6 b 2 4 6 4 9 a 2 3 6 d 0 e 1 9 f 
-j=7 6 3 6 6 7 1 2 6 2 4 3 5 2 4 7 f 
-j=0
+0x41a7 0x10d63af1 0x60b7acd9 0x3ab50c2a 0x4431b782 0x1c06dac8 0x6058ed8 0x56e509fe 0x56f32f43 0x77a4044d 0x31169898 0x427c3c55 0x6a5d128c 0x46cdbe2 0x6d7d4b3 0xffffffff 
+j=0 7 1 9 a 2 8 8 e 3 d 8 5 c 2 3 f 
+j=1 a f d 2 8 c d f 4 4 9 5 8 e b f 
+j=2 1 a c c 7 a e 9 f 4 8 c 2 b 4 f 
+j=3 4 3 a 0 b d 8 0 2 0 9 3 1 d d f 
+j=4 0 6 7 5 1 6 5 5 3 4 6 c d c 7 f 
+j=5 0 d b b 3 0 0 e f a 1 7 5 6 d f 
+j=6 0 0 0 a 4 c 6 6 6 7 1 2 a 4 6 f 
+j=7 0 1 6 3 4 1 0 5 5 7 3 4 6 0 0 f 
+window j=0
+Pippenger: Accumulating buckets...
+i=0 7 
+i=1 1 
+i=2 9 
+i=3 a 
+i=4 2 
+i=5 8 
+i=6 8 
+i=7 e 
+i=8 3 
+i=9 d 
+i=10 8 
+i=11 5 
+i=12 c 
+i=13 2 
+i=14 3 
+i=15 f 
+window j=1
 Pippenger: Accumulating buckets...

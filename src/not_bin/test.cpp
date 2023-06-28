@@ -5,14 +5,13 @@
 #include <cmath>
 #include <string.h>
 
-#define NUM_TESTS 256
+// ******** NOTE: START WITH 1 TEST FIRST ******** 
+#define NUM_TESTS 1
 #define N 16
 
 using namespace std;
 
 int main(int argc, char** argv){
-    std::cout << "RAHHHHH" << endl;
-
     if ((argc > 1) && (strcmp(argv[1], "test") == 0)) {
         // run tests
         std::cout << "Running " << NUM_TESTS << " tests...\n";

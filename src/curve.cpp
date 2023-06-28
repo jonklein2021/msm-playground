@@ -65,6 +65,12 @@ Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
         return *this;
     }
 
+    // ******** NOTE: NEED TO CHANGE THIS -- need to adhere to correct field / curve arithmetic 
+    // (ie. implement the correct addition equation for the curve). This is a quick and dirty solution ********
+    if (*this != a) {
+        return EC_point(this->getX() + a.getX(), this->getY() + a.getY());
+    }
+
     if (*this == a) return doublePoint(); // addition to itself
     const double lambda = (a.y - y)/(a.x - x);
     const double newX = lambda*lambda + a1*lambda - a2 - x - a.x;
@@ -95,7 +101,7 @@ Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
  * @return EC_point
  */
 Curve::EC_point Curve::EC_point::operator*(unsigned n) {
-    EC_point result{};
+    EC_point result;
     for (size_t i = 0; i < n; i++) {
         // std::cout <<  "hola from *\n";
         result += *this;
@@ -124,7 +130,7 @@ Curve::EC_point Curve::EC_point::times(unsigned n) {
     if (n == 1) return *this;
     if (n == 2) return doublePoint();
 
-    EC_point result{};
+    EC_point result;
     EC_point temp(x, y);
 
     while (n > 0) {

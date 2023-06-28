@@ -7,7 +7,6 @@
 using namespace std;
 
 namespace MSM {
-    // doesnt work because naive multiplication doesnt work??
     Curve::EC_point addMethod(vector<Curve::EC_point> points, vector<unsigned> scalars) {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
@@ -28,7 +27,7 @@ namespace MSM {
     }
 
     /**
-     * @brief "naive" pippenger algorithm, simplest implementation (bucket method)
+     * @brief "naive" pippenger algorithm, simplest implementation (not bucket method)
      *      WE BUCKET METHOD IN THIS BITCH TAKE YO ASS BACK TO NAIVE IMPLEMENTATION
      * 
      * @param points 
@@ -96,33 +95,41 @@ namespace MSM {
         pairing is an array of size two of format (Point, Scalar Comp)
         */
         
-        vector<vector<Curve::EC_point>> jonsBuckets(mask); // jon (evil vector)
+        vector<vector<Curve::EC_point> > jonsBuckets(mask); // jon (evil vector)
         vector<Curve::EC_point> jawns; // jawns
 
         for (size_t j = 0; j < k; j++) { // iterate over windows
-            cout << "j=" << j << endl;
+            cout << "window j=" << j << endl;
 
             cout << "Pippenger: Accumulating buckets..." << endl;
             // accumulate points into buckets
             for (size_t i = 0; i < n; i++) { // iterate over scalars
                 cout << "i=" << i << " ";
                 // assign reference to correct bucket
-                printf("%x\n", scalarComps[j*n+i]);
+                printf("%x \n", scalarComps[j*n+i]);
                 // add point to correct bucket (ith scalar corresponds to ith point)
+                // ******* NOTE: Fix this ********
                 jonsBuckets[scalarComps[j*n+i]].push_back(points[i]);
             } //<---- when this loop is done, the scalars associated with the jth window have been placed
-            
-            cout << "Pippenger: Aggregating points in each bucket..." << endl;
+        }
+        
+        cout << "Pippenger: Aggregating points in each bucket..." << endl;
+        for (size_t j = 0; j < k; j++) {
+            vector<Curve::EC_point> currentBucket(mask);
             // aggregate points in each bucket via naive addition
             for (size_t b = 0; b < mask; b++) { // for each bucket, store sum of points in first index
-                vector<Curve::EC_point> currentBucket = jonsBuckets[b];
-                size_t bucketSize = currentBucket.size();
-                for (size_t l = 1; l < bucketSize; l++) {
-                    currentBucket[0] += currentBucket[l];
+                size_t bucketSize = jonsBuckets[b].size();
+                if (bucketSize != 0) { 
+                    for (size_t l = 0; l < bucketSize; l++) {
+                        currentBucket[b] += jonsBuckets[b][l];
+                    }
+                    currentBucket[b].print();
                 }
             }
-
-            cout << "Triangle sum initializing..." << endl;
+        }
+            
+        cout << "Triangle sum initializing..." << endl;
+        for (size_t j = 0; j < k; j++) {
             // aggregate buckets for this window via triangle sum and store result
             Curve::EC_point bucketAgg, prev;
             bucketAgg = prev = jonsBuckets[0][0];
@@ -164,7 +171,7 @@ namespace MSM {
         After algo completes we have each first element in totalBuckets[i][0] = S_1, S_2, ... S_k
         */
 
-        Curve::EC_point finalGigaChadPoint{};
+        Curve::EC_point finalGigaChadPoint;
 
         cout << "Pippenger: Aggregating windows..." << endl;
         for (auto &&jawn : jawns) {
