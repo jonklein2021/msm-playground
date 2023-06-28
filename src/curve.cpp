@@ -5,10 +5,13 @@
 #include <cmath>
 
 int Curve::a1 = 0;
-int Curve::a2 = 6;
-int Curve::a3 = -10;
-int Curve::a4 = -10;
-int Curve::a6 = -10;
+int Curve::a2 = 0;
+int Curve::a3 = 0;
+int Curve::a4 = 0;
+int Curve::a6 = 3;
+
+//so a1 = 0, a3 = 0, a2 =0, a4 = 0, a6 = 3 for BN-254 Y^2 = X^3 + 3 with
+//q = 21888242871839275222246405745257275088696311157297823662689037894645226208583
 
 Curve::EC_point::EC_point(double x0, double y0) {
     x = x0;
@@ -65,7 +68,10 @@ Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
         return *this;
     }
 
-    if (*this == a) return doublePoint(); // addition to itself
+    if (*this == a) { // addition to itself
+        return doublePoint();
+    }
+    
     const double lambda = (a.y - y)/(a.x - x);
     const double newX = lambda*lambda + a1*lambda - a2 - x - a.x;
     const double newY = -1*a1*newX - a3 - lambda*newX + lambda*x - y;
@@ -153,7 +159,7 @@ Curve::EC_point Curve::EC_point::doublePoint() {
 }
 
 Curve::EC_point Curve::EC_point::generatePoint(double x) {
-    double y = sqrt(x*x*x + 6*x*x - 10*x + 15) + 5;
+    double y = sqrt(x*x*x + 3);
     return EC_point(x, y);
 }
 

@@ -105,11 +105,11 @@ namespace MSM {
             cout << "Pippenger: Accumulating buckets..." << endl;
             // accumulate points into buckets
             for (size_t i = 0; i < n; i++) { // iterate over scalars
-                cout << "i=" << i << " ";
-                // assign reference to correct bucket
-                printf("%x\n", scalarComps[j*n+i]);
-                // add point to correct bucket (ith scalar corresponds to ith point)
-                jonsBuckets[scalarComps[j*n+i]].push_back(points[i]);
+                fflush(stdout);
+                if (scalarComps[j*k+i] != 0) {
+                    // add point to correct bucket (ith scalar corresponds to ith point)
+                    jonsBuckets[scalarComps[j*k+i]-1].push_back(points[i]);
+                }
             } //<---- when this loop is done, the scalars associated with the jth window have been placed
             
             cout << "Pippenger: Aggregating points in each bucket..." << endl;
@@ -126,20 +126,24 @@ namespace MSM {
             // aggregate buckets for this window via triangle sum and store result
             Curve::EC_point bucketAgg, prev;
             bucketAgg = prev = jonsBuckets[0][0];
-            for (size_t b = 1; b < mask; b++) {
+            for (size_t b = mask-1; b >= 0; b--) {
+                fflush(stdout);
+                cout << "b=" << b << " ";
+                printf("%x\n", jonsBuckets[b][0]);
                 prev += jonsBuckets[b][0];
                 bucketAgg += prev;
-            }
+                cout << "hola from end" << endl;
+            } 
 
             cout << "Pushing back jawns..." << endl;
             jawns.push_back(bucketAgg);
 
-
             cout << "Clearing buckets..." << endl;
             // clear set of buckets for next window
-            for (size_t b = 0; b < mask; b++) {
-                jonsBuckets[b].clear();
+            for (auto &bucket : jonsBuckets) {
+                bucket.clear();
             }
+            
             cout << "HUGE" << endl;
         }
         

@@ -31,8 +31,7 @@ int main(int argc, char** argv){
             // generate points
             for (size_t k = 0; k < N; k++) {
                 double x = (rand() % 10000)/100.00;
-                double y = sqrt(x*x*x + 6*x*x - 10*x + 15) + 5; //algebra works out to this, because a = 0
-                Curve::EC_point newPoint(x, y);
+                Curve::EC_point newPoint = Curve::EC_point::generatePoint(x); //algebra works out to this, because a = 0
                 points.push_back(newPoint);
             }
             
@@ -60,7 +59,7 @@ int main(int argc, char** argv){
     }
 
     Curve::EC_point p(0.0, 0.0);
-    p = Curve::EC_point::generatePoint(1.0);
+    p = Curve::EC_point::generatePoint(5.0);
 
     // Curve::EC_point p1 = p*7; // naive
     // Curve::EC_point p2 = p.times(7); // double and add
@@ -68,11 +67,14 @@ int main(int argc, char** argv){
     // cout << "p*2 = "; (p*2).print();
     // cout << "p*3 = "; (p*3).print();
     // cout << "p*4 = "; (p*4).print();
-    std::cout << "(p*2)+(p*2) = "; ((p*2)+(p*2)).print();
+    std::cout << "(p+p) = "; (p+p).print();
+    std::cout << "(p.double()) = "; p.doublePoint().print();
+    std::cout << "(p*2) = "; (p*2).print();
+    std::cout << "(p.times(2)) = "; (p.times(2)).print();
     std::cout << "(p*3)+(p*4) = "; ((p*3)+(p*4)).print();
     std::cout << "(p*4)+(p*4) = "; ((p*4)+(p*4)).print();
     std::cout << "(p*4)+(p*2) = "; ((p*4)+(p*2)).print();
-    std::cout << "p.times(6) = "; p.times(5).print();   
+    std::cout << "p.times(6) = "; p.times(6).print();   
     std::cout << "p*6 = "; (p*6).print();   
     // cout << "p*7 = "; (p*7).print();
     // cout << "p.times(7) = "; p.times(7).print();
