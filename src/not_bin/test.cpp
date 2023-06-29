@@ -11,8 +11,6 @@
 using namespace std;
 
 int main(int argc, char** argv){
-    std::cout << "RAHHHHH" << endl;
-
     if ((argc > 1) && (strcmp(argv[1], "test") == 0)) {
         // run tests
         std::cout << "Running " << NUM_TESTS << " tests...\n";

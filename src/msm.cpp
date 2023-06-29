@@ -37,7 +37,7 @@ namespace MSM {
      * @return Curve::EC_point 
      */
     Curve::EC_point pippengerMethod(vector<Curve::EC_point> points, vector<unsigned> scalars) {
-        cout << "Pippenger: Initiializing..." << endl;
+        // cout << "Pippenger: Initiializing..." << endl;
         assert(points.size() == scalars.size());
         
         const unsigned n = scalars.size();
@@ -57,20 +57,20 @@ namespace MSM {
         vector<unsigned> scalarComps;
         vector<Curve::EC_point> partialSums;
 
-        cout << "Pippenger: Decomposing scalars..." << endl;
-        for (auto &&s : scalars) {
-            printf("0x%x ", s);
-        } cout << endl;
+        // cout << "Pippenger: Decomposing scalars..." << endl;
+        // for (auto &&s : scalars) {
+        //     printf("0x%x ", s);
+        // } cout << endl;
         
 
         for (size_t j = 0; j < k; j++) { // outer loop: iterate over components
-            cout << "j=" << j << " ";
+            // cout << "j=" << j << " ";
             for (size_t i = 0; i < n; i++) { // inner loop: iterate over scalars
                 uint8_t a_ij = (scalars[i] >> c*j) & mask; // jth component of a_i
                 scalarComps.push_back(a_ij); // a[i*n+j]
-                printf("%x ", a_ij);
+                // printf("%x ", a_ij);
             }
-            cout << endl;
+            // cout << endl;
         }
 
         /*
@@ -101,19 +101,18 @@ namespace MSM {
         vector<Curve::EC_point> jawns; // jawns
 
         for (size_t j = 0; j < k; j++) { // iterate over windows
-            cout << "j=" << j << endl;
+            // cout << "j=" << j << endl;
 
-            cout << "Pippenger: Accumulating buckets..." << endl;
+            // cout << "Pippenger: Accumulating buckets..." << endl;
             // accumulate points into buckets
             for (size_t i = 0; i < n; i++) { // iterate over scalars
-                fflush(stdout);
                 if (scalarComps[j*k+i] != 0) {
                     // add point to correct bucket (ith scalar corresponds to ith point)
                     jonsBuckets[scalarComps[j*k+i]-1].push_back(points[i]);
                 }
             } //<---- when this loop is done, the scalars associated with the jth window have been placed
             
-            cout << "Pippenger: Aggregating points in each bucket..." << endl;
+            // cout << "Pippenger: Aggregating points in each bucket..." << endl;
             // aggregate points in each bucket via naive addition
             for (size_t b = 0; b < mask; b++) { // for each bucket, store sum of points in first index
                 size_t bucketSize = jonsBuckets[b].size();
@@ -122,46 +121,32 @@ namespace MSM {
                 } 
             }
 
-            cout << "Triangle sum initializing..." << endl;
+            // cout << "Triangle sum initializing..." << endl;
             // aggregate buckets for this window via triangle sum and store result
             
             Curve::EC_point bucketAgg = jonsBuckets[mask-1][0];
-            
             Curve::EC_point prev = jonsBuckets[mask-1][0];
             
             int s = mask - 2;
             
-            /*
-            for (size_t i = 0; i <= 13; i++) { 
-                printf("i=%d 0x%x\n", i, &jonsBuckets[i][0]); //print pointer address   
-            }
-            */
-
-            bucketAgg.println(); 
-            prev.println(); 
-            
             for (int s = mask-2; s >= 0; s--) {
-                
-                cout << "s=" << s << endl; 
-                Curve::EC_point current;
-                                        
-                if (&jonsBuckets[s][0]) { //ensure bucket is filled
-                    current.println(); 
+                Curve::EC_point& current = jonsBuckets[s][0]; // store reference to current bucket
+                if (&current) { //ensure bucket is filled
                     prev += current;
                     bucketAgg += prev; 
                 }
             }
 
-            cout << "Pushing back jawns..." << endl;
+            // cout << "Pushing back jawn..." << endl;
             jawns.push_back(bucketAgg);
 
-            cout << "Clearing buckets..." << endl;
+            // cout << "Clearing buckets..." << endl;
             // clear set of buckets for next window
             for (auto &bucket : jonsBuckets) {
                 bucket.clear();
             }
             
-            cout << "HUGE" << endl;
+            // cout << "HUGE" << endl;
         }
         
         /*
@@ -187,7 +172,7 @@ namespace MSM {
 
         Curve::EC_point finalGigaChadPoint{};
 
-        cout << "Pippenger: Aggregating windows..." << endl;
+        // cout << "Pippenger: Aggregating windows..." << endl;
         for (auto &&jawn : jawns) {
             finalGigaChadPoint += jawn;
         }

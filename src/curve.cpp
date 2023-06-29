@@ -37,7 +37,7 @@ bool Curve::EC_point::isValid() {
 }
 
 void Curve::EC_point::print() {
-    printf("(%.2f, %.2f)\n", x, y);
+    printf("(%.2f, %.2f)", x, y);
 }
 
 void Curve::EC_point::println() {
