@@ -101,14 +101,17 @@ namespace MSM {
         vector<Curve::EC_point> jawns; // jawns
 
         for (size_t j = 0; j < k; j++) { // iterate over windows
+            // cout << "=========================" << endl;
             // cout << "j=" << j << endl;
 
             // cout << "Pippenger: Accumulating buckets..." << endl;
             // accumulate points into buckets
             for (size_t i = 0; i < n; i++) { // iterate over scalars
-                if (scalarComps[j*k+i] != 0) {
+                // printf("scalarComps[%d*%d+%ld] = 0x%x\n", j, n, i, scalarComps[j*n+i]);
+                if (scalarComps[j*n+i] != 0) {
                     // add point to correct bucket (ith scalar corresponds to ith point)
-                    jonsBuckets[scalarComps[j*k+i]-1].push_back(points[i]);
+                    jonsBuckets[scalarComps[j*n+i]-1].push_back(points[i]);
+                    // printf("0x%x -> 0x%x\n", scalarComps[j*n+i], scalarComps[j*n+i]-1);
                 }
             } //<---- when this loop is done, the scalars associated with the jth window have been placed
             
@@ -127,11 +130,9 @@ namespace MSM {
             Curve::EC_point bucketAgg = jonsBuckets[mask-1][0];
             Curve::EC_point prev = jonsBuckets[mask-1][0];
             
-            int s = mask - 2;
-            
             for (int s = mask-2; s >= 0; s--) {
                 Curve::EC_point& current = jonsBuckets[s][0]; // store reference to current bucket
-                if (&current) { //ensure bucket is filled
+                if (&current) { // ensure bucket is filled
                     prev += current;
                     bucketAgg += prev; 
                 }
