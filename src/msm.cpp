@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <cstring>
 
 using namespace std;
 
@@ -118,23 +119,37 @@ namespace MSM {
                 size_t bucketSize = jonsBuckets[b].size();
                 for (size_t l = 1; l < bucketSize; l++) {
                     jonsBuckets[b][0] += jonsBuckets[b][l];
-                }
+                } 
             }
 
             cout << "Triangle sum initializing..." << endl;
             // aggregate buckets for this window via triangle sum and store result
+            
             Curve::EC_point bucketAgg = jonsBuckets[mask-1][0];
+            
             Curve::EC_point prev = jonsBuckets[mask-1][0];
-            cout << mask-1 << endl;
-            bucketAgg.println();
-            prev.println();
+            
+            int s = mask - 2;
+            
+            /*
+            for (size_t i = 0; i <= 13; i++) { 
+                printf("i=%d 0x%x\n", i, &jonsBuckets[i][0]); //print pointer address   
+            }
+            */
+
+            bucketAgg.println(); 
+            prev.println(); 
+            
             for (int s = mask-2; s >= 0; s--) {
-                cout << "s=" << s << endl;
-                Curve::EC_point current = jonsBuckets[s][0];
-                current.println();
-                prev += current;
-                bucketAgg += prev;
-                cout << "hola from end" << endl;
+                
+                cout << "s=" << s << endl; 
+                Curve::EC_point current;
+                                        
+                if (&jonsBuckets[s][0]) { //ensure bucket is filled
+                    current.println(); 
+                    prev += current;
+                    bucketAgg += prev; 
+                }
             }
 
             cout << "Pushing back jawns..." << endl;

@@ -16,7 +16,683 @@ j=0
 Pippenger: Accumulating buckets...
 Pippenger: Aggregating points in each bucket...
 Triangle sum initializing...
-14
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11a9e0
+&jonsBuckets[0][0]+1): 0xae11a9f8
+&jonsBuckets[0][1]): 0xae11a9f8
+i=0 0xae11a9e0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0x0
+i=4 0x0
+i=5 0xae119ea0
+i=6 0xae119e80
+i=7 0x0
+i=8 0xae119f40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11aa40
+i=12 0xae11a9a0
+i=13 0x0
 (11.25, 37.79)
 (11.25, 37.79)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
 s=13
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=1
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11a9e0
+&jonsBuckets[0][0]+1): 0xae11a9f8
+&jonsBuckets[0][1]): 0xae11a9f8
+i=0 0xae11a9e0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11a9c0
+i=4 0xae119ea0
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0x0
+i=8 0xae119f40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11aa40
+i=12 0xae11a9a0
+i=13 0xae11aa20
+(7.97, 22.55)
+(7.97, 22.55)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=2
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11a9e0
+&jonsBuckets[0][0]+1): 0xae11a9f8
+&jonsBuckets[0][1]): 0xae11a9f8
+i=0 0xae11a9e0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11a9c0
+i=4 0xae119ea0
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0x0
+i=8 0xae119f40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11ac00
+i=12 0xae11a9a0
+i=13 0xae11ab40
+(2.78, 4.94)
+(2.78, 4.94)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=3
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11a9e0
+&jonsBuckets[0][0]+1): 0xae11a9f8
+&jonsBuckets[0][1]): 0xae11a9f8
+i=0 0xae11a9e0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11a9c0
+i=4 0xae119ea0
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0xae11ad20
+i=8 0xae119f40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11acb0
+i=12 0xae11a9a0
+i=13 0xae11ab40
+(4.55, 9.85)
+(4.55, 9.85)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=4
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11a9e0
+&jonsBuckets[0][0]+1): 0xae11a9f8
+&jonsBuckets[0][1]): 0xae11a9f8
+i=0 0xae11a9e0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11a9c0
+i=4 0xae119ea0
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0xae11ad20
+i=8 0xae119f40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11acb0
+i=12 0xae11a9a0
+i=13 0xae11ab40
+(12.37, 43.56)
+(12.37, 43.56)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=5
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11a9e0
+&jonsBuckets[0][0]+1): 0xae11a9f8
+&jonsBuckets[0][1]): 0xae11a9f8
+i=0 0xae11a9e0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11abc0
+i=4 0xae119f40
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0xae11ad20
+i=8 0xae11ac40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11acb0
+i=12 0xae11a9a0
+i=13 0xae11ab40
+(7.84, 22.02)
+(7.84, 22.02)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=6
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11abc0
+&jonsBuckets[0][0]+1): 0xae11abd8
+&jonsBuckets[0][1]): 0xae11abd8
+i=0 0xae11abc0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11ae00
+i=4 0xae11ad90
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0xae11ad20
+i=8 0xae11ac40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11acb0
+i=12 0xae119f40
+i=13 0xae11ab40
+(39.29, 246.28)
+(39.29, 246.28)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+j=7
+Pippenger: Accumulating buckets...
+Pippenger: Aggregating points in each bucket...
+Triangle sum initializing...
+Before first manipulation: 0xa7e92ae0
+Before next manipulation: 0xa7e92ae0
+Mask before bucketAgg: 14
+&jonsBuckets[0][0]): 0xae11abc0
+&jonsBuckets[0][0]+1): 0xae11abd8
+&jonsBuckets[0][1]): 0xae11abd8
+i=0 0xae11abc0
+i=1 0xae11aaa0
+i=2 0xae11ab00
+i=3 0xae11ae00
+i=4 0xae11ad90
+i=5 0xae11ab80
+i=6 0xae119e80
+i=7 0xae11ad20
+i=8 0xae11ac40
+i=9 0xae11aa60
+i=10 0xae11aac0
+i=11 0xae11acb0
+i=12 0xae119f40
+i=13 0xae11ab40
+(25.67, 130.07)
+(25.67, 130.07)
+Before for loop: 0xa7e92ae0
+In for loop: 0xa7e92ae0
+s=13
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=12
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=11
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=10
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=9
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=8
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=7
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=6
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=5
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=4
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=3
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=2
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=1
+(nan, nan)
+hola from end
+In for loop: 0xa7e92ae0
+s=0
+(nan, nan)
+hola from end
+Pushing back jawns...
+Clearing buckets...
+HUGE
+Pippenger: Aggregating windows...
+(239.03, -3695.51)
