@@ -12,7 +12,7 @@ namespace MSM {
     Curve::EC_point addMethod(vector<Curve::EC_point> points, vector<unsigned> scalars) {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
-        for (size_t i = 0; i < points.size(); i++) {
+        for (size_t i = 0; i < points.size(); i++) { // caleb procedure call L
             resultPoint += points[i] * scalars[i];
         }
         return resultPoint;
@@ -21,7 +21,7 @@ namespace MSM {
     Curve::EC_point doubleAddMethod(vector<Curve::EC_point> points, vector<unsigned> scalars) {
         assert(points.size() == scalars.size());
         size_t n = points.size();
-        Curve::EC_point resultPoint(0.0, 0.0);
+        Curve::EC_point resultPoint{};
         for (size_t i = 0; i < n; i++) {
             resultPoint += points[i].times(scalars[i]);
         }
@@ -81,6 +81,15 @@ namespace MSM {
                       | a_n,1 ... a_n,k |
                          ^
                          |-- same window of different scalars
+
+                      | 7 6 9 3 1 f a c 9 d a b 2 b 3 f |
+                      | 6 c 6 7 5 f 4 e 2 c b a f f e f |
+                      | 5 3 8 8 c c 4 8 f c 8 7 1 e 9 f |
+        scalarComps = | 4 2 9 4 d 5 9 5 1 7 5 d 4 1 a f |
+                      | b b c 3 0 9 8 5 e 8 b e 1 7 2 f |
+                      | 8 7 3 3 b 4 e 5 8 e 1 7 b b e f |
+                      | b 2 4 6 4 9 a 2 3 6 d 0 e 1 9 f |
+                      | 6 3 6 6 7 1 2 6 2 4 3 5 2 4 7 f |
         */
         
         /*
@@ -98,9 +107,10 @@ namespace MSM {
         */
         
         vector<vector<Curve::EC_point>> jonsBuckets(mask); // jon (evil vector)
+        jonsBuckets.reserve(mask);
         vector<Curve::EC_point> jawns; // jawns
 
-        for (size_t j = 0; j < k; j++) { // iterate over windows
+        for (size_t j = 0; j < k; j++) { // iterate over windows    
             // cout << "=========================" << endl;
             // cout << "j=" << j << endl;
 
@@ -120,7 +130,7 @@ namespace MSM {
             for (size_t b = 0; b < mask; b++) { // for each bucket, store sum of points in first index
                 size_t bucketSize = jonsBuckets[b].size();
                 for (size_t l = 1; l < bucketSize; l++) {
-                    jonsBuckets[b][0] += jonsBuckets[b][l];
+                    jonsBuckets[b][0] += jonsBuckets[b][l]; //works because we iterate over size
                 } 
             }
 
@@ -146,8 +156,6 @@ namespace MSM {
             for (auto &bucket : jonsBuckets) {
                 bucket.clear();
             }
-            
-            // cout << "HUGE" << endl;
         }
         
         /*
@@ -174,8 +182,12 @@ namespace MSM {
         Curve::EC_point finalGigaChadPoint{};
 
         // cout << "Pippenger: Aggregating windows..." << endl;
-        for (auto &&jawn : jawns) {
-            finalGigaChadPoint += jawn;
+        // for (auto &jawn : jawns) {
+        //     finalGigaChadPoint += jawn;
+        // }
+        //we must multiply by 
+        for (size_t i = 0; i < k; i++) {
+            finalGigaChadPoint += jawns[i].times(1 << (i-1)); // i -> 2^(i-1)
         }
         
         return finalGigaChadPoint;

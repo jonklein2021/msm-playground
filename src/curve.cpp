@@ -82,8 +82,6 @@ Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
     // point addition and assignment
     // std::cout << "hola from +=\n";
 
-    // printf("%d, %d\n", this->isInfinity, a.isInfinity);
-
     if (this->isInfinity && !a.isInfinity) { // O+P
         this->isInfinity = false;
         *this = a;
@@ -104,10 +102,7 @@ Curve::EC_point Curve::EC_point::operator*(unsigned n) {
     EC_point result{};
     for (size_t i = 0; i < n; i++) {
         // std::cout <<  "hola from *\n";
-        result += *this;
-        // std::cout << "result in for loop: ";
-        // result.print();
-        
+        result += *this; // breaks for n >= 6        
     }
     return result;
 }
@@ -117,6 +112,7 @@ Curve::EC_point Curve::EC_point::operator=(Curve::EC_point point) {
     x = point.getX();
     y = point.getY();
     isInfinity = point.isInfinity;
+    return *this;
 }
 
 /**
