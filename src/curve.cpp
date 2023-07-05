@@ -19,43 +19,34 @@ Curve::EC_point::EC_point(double x0, double y0) {
     isInfinity = false;
 }
 
+// default constructor for points at infinity
 Curve::EC_point::EC_point() {
     x = y = NAN;
     isInfinity = true;
 }
 
-const double Curve::EC_point::getX() {
-    return x;
-}
+const double Curve::EC_point::getX() { return x; }
 
-const double Curve::EC_point::getY() {
-    return y;
-}
+const double Curve::EC_point::getY() { return y; }
 
-bool Curve::EC_point::isValid() {
-    return (y*y + a1*x*y + a3*y) == (x*x*x + a2*x*x + a4*x + a6);
-}
+bool Curve::EC_point::isValid() { return (y*y + a1*x*y + a3*y) == (x*x*x + a2*x*x + a4*x + a6); }
 
-void Curve::EC_point::print() {
-    printf("(%.2f, %.2f)", x, y);
-}
+void Curve::EC_point::print() { printf("(%.2f, %.2f)", x, y); }
 
-void Curve::EC_point::println() {
-    printf("(%.2f, %.2f)\n", x, y);
-}
+void Curve::EC_point::println() { printf("(%.2f, %.2f)\n", x, y); }
 
+// check for point equality
 bool Curve::EC_point::operator==(Curve::EC_point a) {
     return abs(x - a.x) < DBL_EPSILON && abs(y - a.y) < DBL_EPSILON;
 }
 
+// check for point inequality
 bool Curve::EC_point::operator!=(Curve::EC_point a) {
     return !(abs(x - a.x) < DBL_EPSILON && abs(y - a.y) < DBL_EPSILON);
 }
 
 // point addition
 Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
-    // std::cout << "hola from +\n";
-
     if (this->isInfinity && a.isInfinity) { // O+O
         return EC_point();
     }
@@ -78,10 +69,8 @@ Curve::EC_point Curve::EC_point::operator+(Curve::EC_point a) {
     return EC_point(newX, newY);
 }
 
+// point addition and assignment
 Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
-    // point addition and assignment
-    // std::cout << "hola from +=\n";
-
     if (this->isInfinity && !a.isInfinity) { // O+P
         this->isInfinity = false;
         *this = a;
@@ -93,7 +82,7 @@ Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
 }
 
 /**
- * @brief naive single-scalar multipliation (for some reason doesnt work???)
+ * @brief naive single-scalar multipliation (doesnt work)
  * 
  * @param n the scalar to multiply by
  * @return EC_point
@@ -101,14 +90,13 @@ Curve::EC_point Curve::EC_point::operator+=(Curve::EC_point a) {
 Curve::EC_point Curve::EC_point::operator*(unsigned n) {
     EC_point result{};
     for (size_t i = 0; i < n; i++) {
-        // std::cout <<  "hola from *\n";
         result += *this; // breaks for n >= 6        
     }
     return result;
 }
 
+// point assignment
 Curve::EC_point Curve::EC_point::operator=(Curve::EC_point point) {
-    // std::cout <<  "hola from =\n";
     x = point.getX();
     y = point.getY();
     isInfinity = point.isInfinity;
@@ -141,19 +129,15 @@ Curve::EC_point Curve::EC_point::times(unsigned n) {
     return result;
 }
 
-/*
-point doubling i.e. P + P = 2P requires:
-lambda = (3x_1^2 + 2a_2x_1 - a_1y_1 + a_4) / (2y_1 + a_1x_1 + a_3)
-we denote 2P (the result) as (x_3, y_3)
-*/
+// point doubling
 Curve::EC_point Curve::EC_point::doublePoint() {
-    // std::cout << "hola from doublePoint()\n";
     const double lambda = (3*x*x + 2*a2*x - a1*y + a4)/(2*y + a1*x + a3);
     const double x3 = lambda*lambda + lambda*a1 - a2 - 2*x;
     const double y3 = -1*a1*x3 - a3 - lambda*x3 + lambda*x - y;
     return EC_point(x3, y3);
 }
 
+// generates a point given some x
 Curve::EC_point Curve::EC_point::generatePoint(double x) {
     double y = sqrt(x*x*x + 3);
     return EC_point(x, y);

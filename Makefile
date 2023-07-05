@@ -1,7 +1,7 @@
 all: libcurve libmsm
-	mkdir -p build/not_bin/
-	g++ src/not_bin/test.cpp -o test -I include -lcurve -lmsm -L build/lib
-	mv test build/not_bin
+	mkdir -p build/bin/
+	g++ src/bin/test.cpp -o test -I include -lcurve -lmsm -L build/lib
+	mv test build/bin
 
 libcurve:
 	mkdir -p build/lib/
@@ -21,3 +21,4 @@ libmsm:
 	
 clean:
 	rm -rf build
+	rm -f tests.out

@@ -8,11 +8,12 @@
 using namespace std;
 
 namespace MSM {
-    // doesnt work because naive multiplication doesnt work??
+    // naive ssm doesn't work => this doesnt work
     Curve::EC_point addMethod(vector<Curve::EC_point> points, vector<unsigned> scalars) {
         assert(points.size() == scalars.size());
         Curve::EC_point resultPoint(0.0, 0.0);
-        for (size_t i = 0; i < points.size(); i++) { // caleb procedure call L
+        size_t n = points.size();
+        for (size_t i = 0; i < n; i++) {
             resultPoint += points[i] * scalars[i];
         }
         return resultPoint;
@@ -29,9 +30,8 @@ namespace MSM {
     }
 
     /**
-     * @brief "naive" pippenger algorithm, simplest implementation (bucket method)
-     *      WE BUCKET METHOD IN THIS BITCH TAKE YO ASS BACK TO NAIVE IMPLEMENTATION
-     * 
+     * @brief pippenger algorithm (bucket method)
+     * lots of debugging comments still here
      * @param points 
      * @param scalars 
      * @return Curve::EC_point 
@@ -85,7 +85,7 @@ namespace MSM {
                       | 7 6 9 3 1 f a c 9 d a b 2 b 3 f |
                       | 6 c 6 7 5 f 4 e 2 c b a f f e f |
                       | 5 3 8 8 c c 4 8 f c 8 7 1 e 9 f |
-        scalarComps = | 4 2 9 4 d 5 9 5 1 7 5 d 4 1 a f |
+        scalarComps = | 4 2 9 4 d 5 9 5 1 7 5 d 4 1 a f | scalarComps for current test case
                       | b b c 3 0 9 8 5 e 8 b e 1 7 2 f |
                       | 8 7 3 3 b 4 e 5 8 e 1 7 b b e f |
                       | b 2 4 6 4 9 a 2 3 6 d 0 e 1 9 f |

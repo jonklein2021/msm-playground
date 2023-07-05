@@ -1,13 +1,16 @@
 #pragma once
 
+// Curve is not currently defined over a finite field in this implementation
 class Curve {
     public:
         static int a1, a2, a3, a4, a6;
         void print();
 
+        // jon remark: EC_point should be a separate class, not an inner class within the Curve class
         class EC_point {
-            public:
+            private:
                 double x, y;
+            public:
                 bool isInfinity;
 
                 EC_point(); // for points at infinity
